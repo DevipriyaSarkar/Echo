@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="events_array">
+        <item>Incoming Call</item>
+        <item>Outgoing Call</item>
+        <item>Internet Connected</item>
+        <item>WiFi Connected</item>
+        <item>Specific WiFi Connected</item>
+        <item>Select</item>
+    </string-array>
+</resources>
