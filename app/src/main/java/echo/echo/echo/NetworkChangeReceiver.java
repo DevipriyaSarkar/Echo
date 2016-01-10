@@ -52,6 +52,22 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
                 // connected to the mobile provider's data plan
                 Toast.makeText(context, activeNetwork.getTypeName(), Toast.LENGTH_SHORT).show();
 
+                DatabaseHandler db = new DatabaseHandler(context);
+                ArrayList<AlarmItems> allArray = db.getAllAlarmItems();
+                for (AlarmItems curItem : allArray) {
+                    if (curItem.isCheck() == 1 && curItem.getEvent().equals("Internet Connected")) {
+                        Log.d("Service Receiver", "internet connected");
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
+                        mBuilder.setSmallIcon(R.mipmap.ic_launcher);
+                        mBuilder.setContentTitle(curItem.getRemind());
+                        mBuilder.setContentText("Hey, you asked us to remind: " + curItem.getRemind());
+                        mBuilder.setAutoCancel(true);
+                        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                        // notificationID allows you to update the notification later on.
+                        mNotificationManager.notify(curItem.getId(), mBuilder.build());
+                    }
+                }
+
             }
         }
     }
