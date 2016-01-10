@@ -44,15 +44,14 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
                         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                         // notificationID allows you to update the notification later on.
                         mNotificationManager.notify(curItem.getId(), mBuilder.build());
-
-
-                    }
-                    if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                        // connected to the mobile provider's data plan
-                        Toast.makeText(context, activeNetwork.getTypeName(), Toast.LENGTH_SHORT).show();
-
                     }
                 }
+            }
+
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                // connected to the mobile provider's data plan
+                Toast.makeText(context, activeNetwork.getTypeName(), Toast.LENGTH_SHORT).show();
+
             }
         }
     }
